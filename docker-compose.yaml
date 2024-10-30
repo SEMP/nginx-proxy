@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "1883:1883"  # MQTT clients
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Mount custom Nginx configuration
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    driver: bridge
+
